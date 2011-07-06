@@ -44,6 +44,11 @@ If you do not wish to use MySQL replace the value of the "db.driver" parameter
 
 on line 8 of the /config/db.xml file with the appropriate driver of the database you are using.
 
+Receive emails about errors that occur in Production
+----------------------------------------------------
+
+If you would like to receive emails about any errors that occur in Production then be sure to set a value for the 'appSettings.logger.email' directive in /config/application.ini
+
 Initial Setup
 =============
 

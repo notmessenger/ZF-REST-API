@@ -17,6 +17,7 @@ Requirements
 ============
 
  * PHP 5.3.2 or greater
+ * short_open_tag = 1 if PHP < 5.4.0 otherwise need to replace '<?=' with '<?php echo' in the view scripts and layouts
  * Database server
  * APC (optional, but have to make configuration changes if not using) 
 
@@ -28,7 +29,7 @@ As this code is presented it assumes the use of APC and MySQL (available on 'loc
 Remove APC support
 ------------------
 
-If you do not wish to use APC remove line 31
+If you do not wish to use APC remove line 30
 
 	<service id="doctrine.orm.cache.apc" class="Doctrine\Common\Cache\ApcCache" />
 
@@ -46,6 +47,14 @@ on line 8 of the /config/db.xml file with the appropriate driver of the database
 Initial Setup
 =============
 
+Set 'path.project' value
+------------------------
+Line 13 of the /config/di/services.xml file, which looks like below
+
+	<parameter key="path.project">/usr/www/api-demo</parameter>
+
+needs to have its value set to the correct Document Root of this application's installation.
+
 Database configuration and credentials
 --------------------------------------
 The /config/db.xml file contains the parameters you need to provide values for in order to configure your database connection.
@@ -58,4 +67,3 @@ To create the database tables required to fully experience this code's functiona
 > cd bin/doctrine
 > ./doctrine orm:schema-tool:create
 </pre>
-

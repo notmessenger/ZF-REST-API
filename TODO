@@ -1,0 +1,4 @@
+@TODO
+=====
+	* Upgrade versions of libraries used in /library
+	* Replace actual files of libraries used in /library with Submodules

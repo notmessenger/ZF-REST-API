@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<container
+	xmlns="http://www.symfony-project.org/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+
+	<services>
+		<service id="service.country" class="App\System\Service\CountryService">
+			<call method="setEntityManager">
+				<argument type="service" id="doctrine.orm" />
+			</call>
+		</service>
+	</services>
+</container>

@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+
+<container
+	xmlns="http://www.symfony-project.org/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+	<imports>
+		<import resource="../db.xml" />
+		<import resource="service/country.xml" />
+		<import resource="doctrine/orm.xml" />
+	</imports>
+	<parameters>
+		<parameter key="path.project">/usr/www/api-demo</parameter>
+	</parameters>
+</container>

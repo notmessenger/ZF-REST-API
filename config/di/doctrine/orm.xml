@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+
+<container
+	xmlns="http://www.symfony-project.org/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="doctrine.orm.cache_driver">array</parameter>
+	</parameters>
+
+	<services>
+		<!--- Annotation Metadata Driver Service -->
+		<service id="doctrine.orm.metadata_driver.annotation" class="Doctrine\ORM\Mapping\Driver\AnnotationDriver">
+			<argument type="service" id="doctrine.orm.metadata_driver.annotation.reader" />
+			<argument type="collection">
+				<argument>%path.project%/library/App/System/Entity</argument>
+			</argument>
+		</service>
+
+		<service id="doctrine.orm.metadata_driver.annotation.reader" class="Doctrine\Common\Annotations\AnnotationReader">
+			<argument type="service" id="doctrine.orm.cache.array" />
+			<call method="setDefaultAnnotationNamespace"><argument>Doctrine\ORM\Mapping\</argument></call>
+		</service>
+
+		<!--- ORM Array Cache Driver Service -->
+		<service id="doctrine.orm.cache.array" class="Doctrine\Common\Cache\ArrayCache" />
+
+		<!--- ORM APC Cache Driver Service -->
+		<service id="doctrine.orm.cache.apc" class="Doctrine\Common\Cache\ApcCache" />
+	
+		<service id="doctrine.orm" class="Doctrine\ORM\EntityManager" shared="true" factory-method="create">
+
+			<argument type="collection">
+				<argument key="driver">%db.driver%</argument>
+				<argument key="dbname">%db.dbname%</argument>
+				<argument key="host">%db.host%</argument>
+				<argument key="user">%db.username%</argument>
+				<argument key="password">%db.password%</argument>
+			</argument>
+
+			<argument type="service">
+				<service class="Doctrine\ORM\Configuration">
+					<call method="setMetadataDriverImpl">
+						<argument type="service" id="doctrine.orm.metadata_driver.annotation" />
+					</call>
+					<call method="setQueryCacheImpl">
+						<argument type="service" id="doctrine.orm.cache.array" />
+					</call>
+					<call method="setMetadataCacheImpl">
+						<argument type="service" id="doctrine.orm.cache.array" />
+					</call>
+					<call method="setProxyDir">
+						<argument>%path.project%/data/cache/proxies</argument>
+					</call>
+					<call method="setProxyNamespace">
+						<argument>App\System\Proxies</argument>
+					</call>
+				</service>
+			</argument>
+
+		</service>
+
+	</services>
+</container>

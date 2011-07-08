@@ -1,0 +1,25 @@
+<?= $this->doctype() . "\n"; ?>
+<html>
+<head>
+<?= $this->headTitle() . "\n"; ?>
+<?= $this->headMeta() . "\n"; ?>
+<?= $this->headLink() . "\n"; ?>
+<?= $this->headStyle() . "\n"; ?>
+<?= $this->headScript() . "\n"; ?>
+</head>
+
+<body>
+
+<div id="page"></div>
+
+	<div>
+		<h1>Test Developer Network</h1>
+	</div>
+	<div id="content">
+		<?= $this->layout()->content ?>
+	</div>
+</div>
+
+<?= $this->inlineScript() ?>
+</body>
+</html>

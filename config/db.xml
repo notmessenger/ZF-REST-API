@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+
+<container
+	xmlns="http://www.symfony-project.org/schema/dic/services"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+	<parameters>
+		<parameter key="db.driver">pdo_mysql</parameter>
+		<parameter key="db.host">localhost</parameter>
+		<parameter key="db.username">apidemo</parameter>
+		<parameter key="db.password">password</parameter>
+		<parameter key="db.dbname">apidemo</parameter>
+	</parameters>
+</container>
